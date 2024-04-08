@@ -1,3 +1,11 @@
+/*
+ * @Author: elijte 2681994981@qq.com
+ * @Date: 2024-04-08 19:41:58
+ * @LastEditors: elijte 2681994981@qq.com
+ * @LastEditTime: 2024-04-08 23:09:49
+ * @FilePath: \rust-rustlings-2024-spring-eljrte\exercises\structs\structs3.rs
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // structs3.rs
 //
 // Structs contain data, but can also have logic. In this exercise we have
@@ -7,7 +15,6 @@
 // Execute `rustlings hint structs3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 #[derive(Debug)]
 struct Package {
@@ -29,12 +36,19 @@ impl Package {
         }
     }
 
-    fn is_international(&self) -> ??? {
+    fn is_international(&self) -> bool {
         // Something goes here...
+        if self.sender_country==self.recipient_country{
+            false
+        }
+        else{
+            true
+        }
     }
 
-    fn get_fees(&self, cents_per_gram: i32) -> ??? {
+    fn get_fees(&self, cents_per_gram: i32) -> i32 {
         // Something goes here...
+        cents_per_gram*self.weight_in_grams
     }
 }
 

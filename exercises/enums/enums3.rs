@@ -1,3 +1,11 @@
+/*
+ * @Author: elijte 2681994981@qq.com
+ * @Date: 2024-04-08 19:41:58
+ * @LastEditors: elijte 2681994981@qq.com
+ * @LastEditTime: 2024-04-08 23:23:14
+ * @FilePath: \rust-rustlings-2024-spring-eljrte\exercises\enums\enums3.rs
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // enums3.rs
 //
 // Address all the TODOs to make the tests pass!
@@ -5,10 +13,13 @@
 // Execute `rustlings hint enums3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 enum Message {
     // TODO: implement the message variant types based on their usage below
+    Move(Point),
+    Echo(String),
+    Quit,
+    ChangeColor(u8,u8,u8),
 }
 
 struct Point {
@@ -43,6 +54,12 @@ impl State {
         // variants
         // Remember: When passing a tuple as a function argument, you'll need
         // extra parentheses: fn function((t, u, p, l, e))
+        match message{
+            Message::Quit => self.quit(),
+            Message::ChangeColor(x,y,z)=>self.change_color((x,y,z)),
+            Message::Echo(s) => self.echo(s),
+            Message::Move(p) => self.move_position(p), 
+        }
     }
 }
 

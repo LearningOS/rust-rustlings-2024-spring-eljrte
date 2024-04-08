@@ -1,3 +1,11 @@
+/*
+ * @Author: elijte 2681994981@qq.com
+ * @Date: 2024-04-08 19:41:58
+ * @LastEditors: elijte 2681994981@qq.com
+ * @LastEditTime: 2024-04-08 22:21:11
+ * @FilePath: \rust-rustlings-2024-spring-eljrte\exercises\structs\structs1.rs
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // structs1.rs
 //
 // Address all the TODOs to make the tests pass!
@@ -5,13 +13,16 @@
 // Execute `rustlings hint structs1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 struct ColorClassicStruct {
     // TODO: Something goes here
+    red:i32,
+    green:i32,
+    blue:i32,
+
 }
 
-struct ColorTupleStruct(/* TODO: Something goes here */);
+struct ColorTupleStruct(i32,i32,i32);
 
 #[derive(Debug)]
 struct UnitLikeStruct;
@@ -23,7 +34,11 @@ mod tests {
     #[test]
     fn classic_c_structs() {
         // TODO: Instantiate a classic c struct!
-        // let green =
+        let green =ColorClassicStruct{
+            red:0,
+            green:255,
+            blue:0,
+        };
 
         assert_eq!(green.red, 0);
         assert_eq!(green.green, 255);
@@ -33,7 +48,7 @@ mod tests {
     #[test]
     fn tuple_structs() {
         // TODO: Instantiate a tuple struct!
-        // let green =
+        let green =(0,255,0);
 
         assert_eq!(green.0, 0);
         assert_eq!(green.1, 255);
@@ -41,9 +56,9 @@ mod tests {
     }
 
     #[test]
-    fn unit_structs() {
+    fn unit_structs() {    //没搞懂这是个啥
         // TODO: Instantiate a unit-like struct!
-        // let unit_like_struct =
+        let unit_like_struct =UnitLikeStruct;
         let message = format!("{:?}s are fun!", unit_like_struct);
 
         assert_eq!(message, "UnitLikeStructs are fun!");

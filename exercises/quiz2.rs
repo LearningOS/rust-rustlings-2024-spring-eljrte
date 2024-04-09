@@ -1,3 +1,11 @@
+/*
+ * @Author: elijte 2681994981@qq.com
+ * @Date: 2024-04-08 19:41:58
+ * @LastEditors: elijte 2681994981@qq.com
+ * @LastEditTime: 2024-04-09 19:31:39
+ * @FilePath: \rust-rustlings-2024-spring-eljrte\exercises\quiz2.rs
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // quiz2.rs
 //
 // This is a quiz for the following sections:
@@ -20,8 +28,6 @@
 //
 // No hints this time!
 
-// I AM NOT DONE
-
 pub enum Command {
     Uppercase,
     Trim,
@@ -32,11 +38,22 @@ mod my_module {
     use super::Command;
 
     // TODO: Complete the function signature!
-    pub fn transformer(input: ???) -> ??? {
+    pub fn transformer(input: Vec<(String,Command)>) -> Vec<String> {
         // TODO: Complete the output declaration!
-        let mut output: ??? = vec![];
+        let mut output: Vec<String> = vec![];
         for (string, command) in input.iter() {
             // TODO: Complete the function body. You can do it!
+            match command{
+                Command::Uppercase =>output.push(String::from(string.to_uppercase())),
+                Command::Trim => output.push(String::from(string.trim())),
+                Command::Append(num) =>{
+                    let mut newstr = string.clone();
+                    for i in 1..=*num{
+                        newstr.push_str("bar");
+                    }
+                    output.push(newstr);
+                } ,
+            }
         }
         output
     }
@@ -45,7 +62,7 @@ mod my_module {
 #[cfg(test)]
 mod tests {
     // TODO: What do we need to import to have `transformer` in scope?
-    use ???;
+    use crate::my_module::transformer;
     use super::Command;
 
     #[test]

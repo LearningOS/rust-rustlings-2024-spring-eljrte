@@ -1,3 +1,11 @@
+/*
+ * @Author: elijte 2681994981@qq.com
+ * @Date: 2024-04-08 19:41:58
+ * @LastEditors: elijte 2681994981@qq.com
+ * @LastEditTime: 2024-04-09 20:17:12
+ * @FilePath: \rust-rustlings-2024-spring-eljrte\exercises\error_handling\errors2.rs
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // errors2.rs
 //
 // Say we're writing a game where you can buy items with tokens. All items cost
@@ -19,16 +27,20 @@
 // Execute `rustlings hint errors2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 use std::num::ParseIntError;
 
 pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let processing_fee = 1;
     let cost_per_item = 5;
-    let qty = item_quantity.parse::<i32>();
+    let qty = item_quantity.parse::<i32>()?;
 
-    Ok(qty * cost_per_item + processing_fee)
+    // match qty{
+    //     Ok(num) => Ok(num * cost_per_item + processing_fee),
+    //     Err(e) => Err(e),
+    // }
+
+    Ok(qty*cost_per_item + processing_fee)
 }
 
 #[cfg(test)]

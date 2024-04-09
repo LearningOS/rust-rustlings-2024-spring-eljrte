@@ -1,3 +1,11 @@
+/*
+ * @Author: elijte 2681994981@qq.com
+ * @Date: 2024-04-08 19:41:58
+ * @LastEditors: elijte 2681994981@qq.com
+ * @LastEditTime: 2024-04-09 21:33:55
+ * @FilePath: \rust-rustlings-2024-spring-eljrte\exercises\traits\traits5.rs
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // traits5.rs
 //
 // Your task is to replace the '??' sections so the code compiles.
@@ -7,7 +15,6 @@
 // Execute `rustlings hint traits5` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 pub trait SomeTrait {
     fn some_function(&self) -> bool {
@@ -30,7 +37,7 @@ impl SomeTrait for OtherStruct {}
 impl OtherTrait for OtherStruct {}
 
 // YOU MAY ONLY CHANGE THE NEXT LINE
-fn some_func(item: ??) -> bool {
+fn some_func(item: (impl SomeTrait+OtherTrait)) -> bool {
     item.some_function() && item.other_function()
 }
 

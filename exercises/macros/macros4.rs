@@ -2,7 +2,7 @@
  * @Author: elijte 2681994981@qq.com
  * @Date: 2024-04-08 19:41:58
  * @LastEditors: elijte 2681994981@qq.com
- * @LastEditTime: 2024-04-10 23:48:59
+ * @LastEditTime: 2024-04-11 11:47:40
  * @FilePath: \rust-rustlings-2024-spring-eljrte\exercises\macros\macros4.rs
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,7 +11,6 @@
 // Execute `rustlings hint macros4` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 #[rustfmt::skip]
 macro_rules! my_macro {

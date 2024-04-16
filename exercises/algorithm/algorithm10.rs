@@ -1,6 +1,14 @@
 /*
+ * @Author: elijte 2681994981@qq.com
+ * @Date: 2024-04-08 19:41:58
+ * @LastEditors: elijte 2681994981@qq.com
+ * @LastEditTime: 2024-04-15 21:20:25
+ * @FilePath: \rust-rustlings-2024-spring-eljrte\exercises\algorithm\algorithm10.rs
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
+/*
 	graph
-	This problem requires you to implement a basic graph functio
+	This problem requires you to implement a basic graph function
 */
 // I AM NOT DONE
 
@@ -29,7 +37,16 @@ impl Graph for UndirectedGraph {
         &self.adjacency_table
     }
     fn add_edge(&mut self, edge: (&str, &str, i32)) {
-        //TODO
+        let (from_node,to_node,weight) = edge;
+        if !self.contains(from_node){
+            self.add_node(from_node);
+        }
+        if !self.contains(to_node){
+            self.add_node(to_node);
+        }
+
+        self.adjacency_table_mutable().get_mut(from_node).unwrap().push((String::from(to_node),weight));
+        self.adjacency_table_mutable().get_mut(to_node).unwrap().push((String::from(from_node),weight));
     }
 }
 pub trait Graph {
@@ -38,11 +55,13 @@ pub trait Graph {
     fn adjacency_table(&self) -> &HashMap<String, Vec<(String, i32)>>;
     fn add_node(&mut self, node: &str) -> bool {
         //TODO
-		true
+		if self.contains(node){
+            return false;
+        }
+        self.adjacency_table_mutable().insert(String::from(node),Vec::new());
+        true
     }
-    fn add_edge(&mut self, edge: (&str, &str, i32)) {
-        //TODO
-    }
+    fn add_edge(&mut self, edge: (&str, &str, i32));
     fn contains(&self, node: &str) -> bool {
         self.adjacency_table().get(node).is_some()
     }

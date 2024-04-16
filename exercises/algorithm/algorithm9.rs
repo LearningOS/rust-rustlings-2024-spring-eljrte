@@ -38,6 +38,15 @@ where
 
     pub fn add(&mut self, value: T) {
         //TODO
+        self.items.push(value);
+        self.count+=1;
+
+        let mut idx = self.count;
+        while idx>1 && (self.comparator)(&self.items[idx],&self.items[self.parent_idx(idx)]){
+            let parentidx = self.parent_idx(idx);
+            self.items.swap(idx,parentidx);
+            idx = parentidx;
+        }
     }
 
     fn parent_idx(&self, idx: usize) -> usize {
@@ -56,9 +65,25 @@ where
         self.left_child_idx(idx) + 1
     }
 
+    //使用前需要先验证children_present
     fn smallest_child_idx(&self, idx: usize) -> usize {
-        //TODO
-		0
+        let left = self.left_child_idx(idx);
+        let right = self.right_child_idx(idx);
+
+        if !self.children_present(idx){
+            return 0;
+        }
+        if right > self.count{
+            return left;
+        }
+
+        if (self.comparator)(&self.items[left],&self.items[right]){
+            left
+        }
+        else{
+            right
+        }
+
     }
 }
 
@@ -84,8 +109,27 @@ where
     type Item = T;
 
     fn next(&mut self) -> Option<T> {
-        //TODO
-		None
+        if self.count == 0{
+            return None;
+        }
+
+        self.items.swap(1,self.count);
+        let res = self.items.pop();
+        self.count-=1;
+
+        if self.count>1{
+            let mut idx =1;
+            while self.children_present(idx){
+                let tmp = self.smallest_child_idx(idx);
+                if ((self.comparator)(&self.items[tmp],&self.items[idx])){
+                    self.items.swap(tmp,idx);
+                }
+                idx =tmp;
+            }
+        }
+
+        res
+
     }
 }
 
@@ -145,6 +189,7 @@ mod tests {
         heap.add(9);
         heap.add(11);
         assert_eq!(heap.len(), 4);
+        println!("{}",heap.items[2]);
         assert_eq!(heap.next(), Some(11));
         assert_eq!(heap.next(), Some(9));
         assert_eq!(heap.next(), Some(4));
